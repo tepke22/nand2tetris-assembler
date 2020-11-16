@@ -1,0 +1,20 @@
+html{
+  margin: 0;
+  padding: 0;
+  background-color: darkgrey;
+}
+.main{
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+label {
+  cursor: pointer;
+}
+
+textarea {
+  width: 400px;
+  height: 600px;
+  resize: none;
+  
+}
