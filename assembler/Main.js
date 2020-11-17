@@ -7,15 +7,13 @@ class Main{
 
   assemble(){
     this.finalCode="";
-    console.log(this.symbol_table.symbolTable);
+    
     while(this.parser.hasMoreCommands()){
       this.parser.advance();
       if(this.parser.command_type=='L_COMMAND'){
         this.writeLabel(this.parser.symbol, this.parser.current_instruction_number);
       }
     }
-
-    console.log(this.symbol_table.symbolTable);
     this.parser.getFirstInstruction();
 
      while(this.parser.hasMoreCommands()){
@@ -27,7 +25,7 @@ class Main{
         this.writeC(this.parser.dest,this.parser.comp,this.parser.jump);
       }
     }
-    document.getElementById('out-content-target').innerHTML=this.finalCode;
+    document.getElementById('out-content-target').value=this.finalCode;
   }
 
     writeLabel(symbol, current_instruction_number){
@@ -37,10 +35,8 @@ class Main{
   
     createAddress(symbol){
       let address = symbol.toString(2);
-      console.log(address);
       let base =  "0000000000000000";
       base = base.substr(0,base.length-address.length-1);
-      console.log(base+address);
       return base+address;
     }
 

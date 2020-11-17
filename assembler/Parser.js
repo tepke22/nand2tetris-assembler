@@ -13,30 +13,20 @@ class Parser{
   }
 
   isComment(line){
-    return String(line).startsWith('//') ? true : false;
+    return !Boolean(line) || (String(line).startsWith('//') ? true : false);
   }
 
   getFirstInstruction(){
     this.lines = this.file.split('\n');
-    /*for(let i = 0; i < this.lines.length; i++){
-      console.log(this.lines[i]);
-      console.log('------------------------------------------------');
-    }*/
     this.line_pos_in_file=0;
     while (this.isComment(this.lines[this.line_pos_in_file].trim()) || this.lines[this.line_pos_in_file].trim()===''){
-      //console.log(this.lines[this.line_pos_in_file].trim());
       this.line_pos_in_file++;
     }
     let tmp = this.lines[this.line_pos_in_file].trim();
     tmp = tmp.split('//')[0];
     tmp = tmp.trim();
     this.current_instruction= tmp;
-    //console.log(this.current_instruction);
     this.current_instruction_number=-1;
-    /*for(let j = this.line_pos_in_file; j < this.lines.length; j++){
-      console.log(this.lines[j].trim());
-      //console.log('------------------------------------------------');
-    }*/
   }
 
   getNextInstruction(){
@@ -51,6 +41,11 @@ class Parser{
   }
 
   hasMoreCommands(){
+    if(this.current_instruction=='' && this.lines[this.line_pos_in_file+1]!='' && (this.line_pos_in_file+1)<this.lines.length){
+      this.line_pos_in_file++;
+      this.getNextInstruction();
+      return true;
+    }
     return Boolean(this.current_instruction);
   }
 
@@ -74,13 +69,11 @@ class Parser{
   parseA(instruction){
     this.symbol=String(instruction).substring(1);
     this.command_type='A_COMMAND';
-    //console.log(this.symbol);
   }
 
   parseL(instruction){
     this.symbol=String(instruction).slice(1,-1)
     this.command_type='L_COMMAND';
-    //console.log(this.symbol);
   }
 
   parseC(instruction){
@@ -100,6 +93,5 @@ class Parser{
       this.comp=part1[0];
     }
     this.command_type='C_COMMAND';
-    //console.log(this.dest + ((this.dest!='') ? "=" : '') + this.comp + ((this.jump!='') ? ";" : '') + this.jump);
   }
 }
