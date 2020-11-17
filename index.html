@@ -4,29 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nand2teris Assembler</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/fileSaver.js"></script>
+  <script src="./js/asmPredefinedFiles.js"></script>
 </head>
 <body>
 
   <div class="header">
     <div class="header-heading"><h1>Load some predefined assembler codes</h1></div>
     <div class="code_buttons">
-      <button onclick="loadPredefinedFiles()">Add.asm</button>
-      <button onclick="">Max.asm</button>
-      <button onclick="">MaxL.asm</button>
-      <button onclick="">Pong.asm</button>
-      <button onclick="">PongL.asm</button>
-      <button onclick="" >Rect.asm</button>
-      <button onclick="">RectL.asm</button>
+      <button>Add.asm</button>
+      <button>Max.asm</button>
+      <button>MaxL.asm</button>
+      <button>Pong.asm</button>
+      <button>PongL.asm</button>
+      <button>Rect.asm</button>
+      <button>RectL.asm</button>
+      <button>Mult.asm</button>
     </div>
   </div>
-<hr color="#47db71">
   <div class="main">
     <!------------------------------------------------------------------------------------>
     
     <div class="input input-hidden">
       <textarea id="in-content-target" readonly></textarea><br>
-      <button onclick="main()" class="translate_button">Translate</button>
+      <button class="translate_button">Translate</button>
     </div>
 
     <div class="drop-zone">
@@ -37,9 +40,9 @@
     <!------------------------------------------------------------------------------------>
     
     <div class="control_buttons">
-      <div><button onclick="editAsmCode()">Edit .asm code</button></div>
-      <div><button onclick="reset()">Reset</button></div>
-      <div><button onclick="editMachineCode()">Edit machine code</button></div>
+      <div><button id="editAsm">Edit .asm code</button></div>
+      <div><button id="reset">Reset</button></div>
+      <div><button id="editMachine">Edit machine code</button></div>
     </div>
 
     <!------------------------------------------------------------------------------------>
@@ -55,18 +58,13 @@
     <!------------------------------------------------------------------------------------>
   </div>
 
-  <script src="./script.js"defer></script>   
+   
 
-  <script src="./assembler/Code.js" defer></script>
-  <script src="./assembler/Parser.js"defer></script>
-  <script src="./assembler/SymbolTable.js"defer></script>
-  <script src="./assembler/Main.js"defer></script>
+  <script src="./js/assembler/Code.js" defer></script>
+  <script src="./js/assembler/Parser.js"defer></script>
+  <script src="./js/assembler/SymbolTable.js"defer></script>
+  <script src="./js/assembler/Main.js"defer></script>
 
-  <script>
-    function main(){
-      let x = new Main(new Parser(fileContent), new SymbolTable(), new Code());
-      x.assemble();
-    }
-  </script>
+  <script src="./js/script.js" defer></script> 
 </body>
 </html>
