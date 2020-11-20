@@ -14,8 +14,9 @@ class Main{
         this.writeLabel(this.parser.symbol, this.parser.current_instruction_number);
       }
     }
-    this.parser.getFirstInstruction();
-
+    this.parser.line_number=0;    
+    this.parser.current_instruction= this.parser.lines[this.parser.line_number];
+    this.parser.current_instruction_number=-1;
      for(let i=0; i<this.parser.lines.length;i++){
       this.parser.advance();
       if(this.parser.command_type=='A_COMMAND'){

@@ -3,9 +3,8 @@ class Parser{
   constructor(fileContent){
     this.file=String(fileContent);
     this.removeCommentsAndEmptyLines();
-    this.getFirstInstruction();    
     this.lines;
-    this.line_number;
+    this.line_number=0;
     this.dest;
     this.comp;
     this.jump;
@@ -27,22 +26,21 @@ class Parser{
            tmp = tmp.split('//')[0];
            tmp = tmp.trim();
         }
+        this.lines[i]=tmp;
       }
     }
+    this.line_number=0;
+    this.current_instruction= this.lines[this.line_number];
+    this.current_instruction_number=-1;  
   }
 
-  getFirstInstruction(){
-    this.line_number=0;
-    let tmp = this.lines[this.line_number].trim();
-    tmp = tmp.split('//')[0];
-    tmp = tmp.trim();
-    this.current_instruction= tmp;
-    this.current_instruction_number=-1;
-  }
 
 
   advance(){
+
     let tmp=this.current_instruction;
+    console.log(this.current_instruction);
+    console.log(this.lines.length);
     if(tmp[0]=='@'){
       this.parseA(tmp);
       this.current_instruction_number++;
