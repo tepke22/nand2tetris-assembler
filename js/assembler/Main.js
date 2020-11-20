@@ -8,7 +8,7 @@ class Main{
   assemble(){
     this.finalCode="";
     
-    while(this.parser.hasMoreCommands()){
+    for(let i=0; i<this.parser.lines.length;i++){
       this.parser.advance();
       if(this.parser.command_type=='L_COMMAND'){
         this.writeLabel(this.parser.symbol, this.parser.current_instruction_number);
@@ -16,7 +16,7 @@ class Main{
     }
     this.parser.getFirstInstruction();
 
-     while(this.parser.hasMoreCommands()){
+     for(let i=0; i<this.parser.lines.length;i++){
       this.parser.advance();
       if(this.parser.command_type=='A_COMMAND'){
         this.writeA(this.parser.symbol);

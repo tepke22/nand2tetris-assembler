@@ -2,9 +2,10 @@ class Parser{
 
   constructor(fileContent){
     this.file=String(fileContent);
-    this.getFirstInstruction();
+    this.removeCommentsAndEmptyLines();
+    this.getFirstInstruction();    
     this.lines;
-    this.line_pos_in_file;
+    this.line_number;
     this.dest;
     this.comp;
     this.jump;
@@ -12,42 +13,33 @@ class Parser{
     this.command_type;
   }
 
-  isComment(line){
-    return !Boolean(line) || (String(line).startsWith('//') ? true : false);
+  removeCommentsAndEmptyLines(){
+    this.lines=this.file.split('\n');
+    for(let i=0; i<this.lines.length; i++){
+      this.lines[i].trim();
+      if(this.lines[i].startsWith('//') || this.lines[i]=='' || this.lines[i]=='\n'){ 
+      this.lines.splice(i,1);
+      i--;
+      }
+      else{
+        let tmp = this.lines[i];
+        if(tmp != ""){
+           tmp = tmp.split('//')[0];
+           tmp = tmp.trim();
+        }
+      }
+    }
   }
 
   getFirstInstruction(){
-    this.lines = this.file.split('\n');
-    this.line_pos_in_file=0;
-    while (this.isComment(this.lines[this.line_pos_in_file].trim()) || this.lines[this.line_pos_in_file].trim()===''){
-      this.line_pos_in_file++;
-    }
-    let tmp = this.lines[this.line_pos_in_file].trim();
+    this.line_number=0;
+    let tmp = this.lines[this.line_number].trim();
     tmp = tmp.split('//')[0];
     tmp = tmp.trim();
     this.current_instruction= tmp;
     this.current_instruction_number=-1;
   }
 
-  getNextInstruction(){
-    if(this.line_pos_in_file <= this.lines.length){
-      let tmp = this.lines[this.line_pos_in_file];
-      if(tmp != ""){
-        tmp = tmp.split('//')[0];
-        tmp = tmp.trim();
-      }
-      this.current_instruction=tmp;
-    }
-  }
-
-  hasMoreCommands(){
-    if(this.current_instruction=='' && this.lines[this.line_pos_in_file+1]!='' && (this.line_pos_in_file+1)<this.lines.length){
-      this.line_pos_in_file++;
-      this.getNextInstruction();
-      return true;
-    }
-    return Boolean(this.current_instruction);
-  }
 
   advance(){
     let tmp=this.current_instruction;
@@ -62,8 +54,8 @@ class Parser{
       this.parseC(tmp);
       this.current_instruction_number++;
     }
-    this.line_pos_in_file++;
-    this.getNextInstruction();
+    this.line_number++;
+    this.current_instruction=this.lines[this.line_number];
   }
 
   parseA(instruction){

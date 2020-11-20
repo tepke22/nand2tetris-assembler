@@ -26,7 +26,7 @@ function placeFileContent(target, file) {
 document.querySelector('.translate_button').addEventListener('click', (e) => {
   let x = new Main(new Parser(inputTextField.value), new SymbolTable(), new Code());
   x.assemble();
-})
+});
 
 function readFileContent(file) {
 	const reader = new FileReader()
@@ -34,7 +34,7 @@ function readFileContent(file) {
     reader.onload = event => resolve(event.target.result)
     reader.onerror = error => reject(error)
     reader.readAsText(file)
-  })
+  });
 }
 
 dropZone.addEventListener("click", (e) => {
@@ -78,7 +78,7 @@ dropZone.addEventListener('drop', (e) => {
 })
 
 document.querySelector('.download_button').addEventListener('click', function(e) {
-  var text = document.getElementById('out-content-target').innerHTML;
+  var text = document.getElementById('out-content-target').value;
   if(text!=''){
     var file = new File([text], fileName+".hack", {type: "text/plain;charset=utf-8"});
     saveAs(file);
