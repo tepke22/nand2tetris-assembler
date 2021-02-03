@@ -86,7 +86,7 @@ var saveAs = _global.saveAs || (
     a.download = name
     a.rel = 'noopener' // tabnabbing
 
-    // TODO: detect chrome extensions & packaged apps
+    // detect chrome extensions & packaged apps
     // a.target = '_blank'
 
     if (typeof blob === 'string') {

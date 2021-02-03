@@ -1,6 +1,7 @@
 class Code{
-  dest(mnemonic){
-    const destTable = [
+
+  constructor(){
+    this.destTable = [
       {name:"M", value:"001"},
       {name:"D", value:"010"},
       {name:"MD", value:"011"},
@@ -8,17 +9,8 @@ class Code{
       {name:"AM", value:"101"},
       {name:"AD", value:"110"},
       {name:"AMD", value:"111"}];
-      
-    if(destTable.find(x => x.name === mnemonic)){
-      return destTable.find(x => x.name === mnemonic).value;
-    }
-    else{
-      return '000';
-    }
 
-  }
-  comp(mnemonic){
-    const compTable = [
+    this.compTable = [
       {name:"0", value:"0101010"},
       {name:"1", value:"0111111"},
       {name:"-1", value:"0111010"},
@@ -48,16 +40,7 @@ class Code{
       {name:"D&M", value:"1000000"},
       {name:"D|M", value:"1010101"}];
 
-      if(compTable.find(x => x.name == mnemonic)){
-        return compTable.find(x => x.name == mnemonic).value;
-      }
-      else{
-        return '000000';
-      }
-
-  }
-  jump(mnemonic){
-    const jumpTable = [
+    this.jumpTable = [
       {name:"JGT", value:"001"},
       {name:"JEQ", value:"010"},
       {name:"JGE", value:"011"},
@@ -65,9 +48,29 @@ class Code{
       {name:"JNE", value:"101"},
       {name:"JLE", value:"110"},
       {name:"JMP", value:"111"}];
-      
-    if(jumpTable.find(x => x.name === mnemonic)){
-      return jumpTable.find(x => x.name === mnemonic).value;
+  }
+
+  dest(mnemonic){
+    if(this.destTable.find(x => x.name === mnemonic)){
+      return this.destTable.find(x => x.name === mnemonic).value;
+    }
+    else{
+      return '000';
+    }
+
+  }
+  comp(mnemonic){
+      if(this.compTable.find(x => x.name == mnemonic)){
+        return this.compTable.find(x => x.name == mnemonic).value;
+      }
+      else{
+        return '000000';
+      }
+
+  }
+  jump(mnemonic){
+    if(this.jumpTable.find(x => x.name === mnemonic)){
+      return this.jumpTable.find(x => x.name === mnemonic).value;
     }
     else{
       return '000';

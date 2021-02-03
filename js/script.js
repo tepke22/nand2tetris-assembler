@@ -1,12 +1,12 @@
-const inputTextfieldDiv=document.querySelector('.input')
-const outputTextfieldDiv=document.querySelector('.output')
+const inputTextfieldDiv = document.querySelector('.input')
+const outputTextfieldDiv = document.querySelector('.output')
 
 const dropZoneInput = document.querySelector('.drop-zone__input');
 const finalResult = document.querySelector('.final-result');
-const dropZone=dropZoneInput.closest('.drop-zone');
+const dropZone = dropZoneInput.closest('.drop-zone');
 
-const inputTextField=document.querySelector('#in-content-target');
-const outputTextField=document.querySelector('#out-content-target');
+const inputTextField = document.querySelector('#in-content-target');
+const outputTextField = document.querySelector('#out-content-target');
 
 let fileName;
 let fileContent;
@@ -14,7 +14,7 @@ let fileContent;
 function placeFileContent(target, file) {
 	readFileContent(file).then(content => {
     target.value = content
-    fileContent=content;
+    fileContent = content;
     inputTextfieldDiv.classList.remove('input-hidden');
     outputTextfieldDiv.classList.remove('output-hidden');
     dropZone.classList.add('drop-zone-hidden');
@@ -23,7 +23,13 @@ function placeFileContent(target, file) {
   }).catch(error => console.log(error))
 }
 
+inputTextField.addEventListener('mousedown',function(){
+  inputTextField.classList.remove('selected-color');
+});
+
 document.querySelector('.translate_button').addEventListener('click', (e) => {
+  inputTextField.classList.remove('selected-color');
+  outputTextField.value="";
   let x = new Main(new Parser(inputTextField.value), new SymbolTable(), new Code());
   x.assemble();
 });

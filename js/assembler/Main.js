@@ -10,13 +10,20 @@ class Main{
     
     for(let i=0; i<this.parser.lines.length;i++){
       this.parser.advance();
-      if(this.parser.command_type=='L_COMMAND'){
-        this.writeLabel(this.parser.symbol, this.parser.current_instruction_number);
-      }
+      if(this.parser.error == false){
+        if(this.parser.command_type=='L_COMMAND'){
+          this.writeLabel(this.parser.symbol, this.parser.current_instruction_number);
+        }
+      } 
+      else{
+        alert('\ERROR\n\n' + this.parser.errorMessage);
+        return;
+      }     
     }
     this.parser.line_number=0;    
     this.parser.current_instruction= this.parser.lines[this.parser.line_number];
-    this.parser.current_instruction_number=-1;
+    this.parser.current_instruction_number=0;
+
      for(let i=0; i<this.parser.lines.length;i++){
       this.parser.advance();
       if(this.parser.command_type=='A_COMMAND'){
@@ -30,7 +37,7 @@ class Main{
   }
 
     writeLabel(symbol, current_instruction_number){
-      let address = this.createAddress(this.parser.current_instruction_number+1)
+      let address = this.createAddress(this.parser.current_instruction_number)
       this.symbol_table.addEntry(symbol,address);
     }
   

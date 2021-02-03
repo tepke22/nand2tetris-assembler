@@ -215,3 +215,10 @@ transform-style: preserve-3d;
 }
 
 
+.selected-color::selection {
+  background: rgb(233, 102, 102);
+}
+.selected-color::-moz-selection {
+  background: rgb(233, 102, 102);
+}
+

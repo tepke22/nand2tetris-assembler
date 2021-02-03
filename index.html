@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,13 @@
   <script src="./js/fileSaver.js"></script>
   <script src="./js/asmPredefinedFiles.js"></script>
 </head>
+
 <body>
 
   <div class="header">
-    <div class="header-heading"><h1>Load some predefined assembler codes</h1></div>
+    <div class="header-heading">
+      <h1>Load some predefined assembler codes</h1>
+    </div>
     <div class="code_buttons">
       <button>Add.asm</button>
       <button>Max.asm</button>
@@ -26,19 +30,20 @@
   </div>
   <div class="main">
     <!------------------------------------------------------------------------------------>
-    
+
     <div class="input input-hidden">
       <textarea id="in-content-target" readonly></textarea><br>
       <button class="translate_button">Translate</button>
+
     </div>
 
     <div class="drop-zone">
-        <span>Drop file here or click to upload</span>
+      <span>Drop file here or click to upload</span>
       <input type="file" name="myFile" class="drop-zone__input">
     </div>
 
     <!------------------------------------------------------------------------------------>
-    
+
     <div class="control_buttons">
       <div><button id="editAsm">Edit .asm code</button></div>
       <div><button id="reset">Reset</button></div>
@@ -48,8 +53,8 @@
     <!------------------------------------------------------------------------------------>
     <div class="output output-hidden">
       <textarea id="out-content-target" readonly></textarea><br>
-      <button  class="download_button">Download file</button>
-    </div>  
+      <button class="download_button">Download file</button>
+    </div>
 
     <div class="final-result">
       <span>Final result</span>
@@ -58,13 +63,14 @@
     <!------------------------------------------------------------------------------------>
   </div>
 
-   
+
 
   <script src="./js/assembler/Code.js" defer></script>
-  <script src="./js/assembler/Parser.js"defer></script>
-  <script src="./js/assembler/SymbolTable.js"defer></script>
-  <script src="./js/assembler/Main.js"defer></script>
+  <script src="./js/assembler/Parser.js" defer></script>
+  <script src="./js/assembler/SymbolTable.js" defer></script>
+  <script src="./js/assembler/Main.js" defer></script>
 
-  <script src="./js/script.js" defer></script> 
+  <script src="./js/script.js" defer></script>
 </body>
+
 </html>
